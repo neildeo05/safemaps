@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SafeMaps</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZrcwvq7N2Ki-nX0ScLH4cajwoToRYf4&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      #map {
+        height: 100%;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      (function (exports) {
+        "use strict";
+
+        var CUPERTINO_BOUNDS = {
+          north: 37.3385116,
+          south: 37.2947792,
+          west: -122.0826186,
+          east: -122.00976,
+        };
+        var CUPERTINO = {
+          lat: 37.3092828,
+          lng: -122.061154,
+        };
+
+        function initMap() {
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            center: CUPERTINO,
+            restriction: {
+              latLngBounds: CUPERTINO_BOUNDS,
+              strictBounds: false,
+            },
+            zoom: 15,
+          });
+        }
+
+        exports.CUPERTINO = CUPERTINO;
+        exports.CUPERTINO_BOUNDS = CUPERTINO_BOUNDS;
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

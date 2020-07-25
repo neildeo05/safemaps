@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script
+      src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </head>
+  <body>
+    <div style="width: 960px; height: 1080px;" id="mapContainer"></div>
+    <script>
+      // Initialize the platform object:
+      var platform = new H.service.Platform({
+        apikey: "JZSj2xNsu9IwL1liqDAmfuXetPVa-fNbVirjjYiVrY4",
+      });
+      // Get an object containing the default map layers:
+      var defaultLayers = platform.createDefaultLayers();
+
+      // Instantiate the map using the vecor map with the
+      // default style as the base layer:
+      var map = new H.Map(
+        document.getElementById("mapContainer"),
+        defaultLayers.vector.normal.map
+      );
+    </script>
+  </body>
+</html>

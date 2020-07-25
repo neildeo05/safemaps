@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Safemaps - Cupertino</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta charset="utf-8" />
+    <style>
+      #map {
+        height: 100%;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .topnav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      /* Style the links inside the navigation bar */
+      .topnav a {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      /* Change the color of links on hover */
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* Add a color to the active/current link */
+      .topnav a.active {
+        color: white;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/map">Map</a>
+<<<<<<< HEAD
+      <a href="/about">About</a>
+=======
+      <a href="/api/all">API</a>
+>>>>>>> ba469ad4b39dc13999fd2a2370c907747cb7d217
+      <a href="/recovered">Report a recovery</a>
+      <a href="/has-covid">Report a case</a>
+    </div>
+    <p>If the icons haven't loaded, please refresh the page</p>
+    <div id="map"></div>
+    <script>
+      var map;
+      var CUPERTINO_BOUNDS = {
+        north: 37.346459,
+        south: 37.287861,
+        west: -122.132483,
+        east: -121.964513,
+      };
+      var CUPERTINO = {
+        lat: 37.317749,
+        lng: -122.04186,
+      };
+      function mapinit() {
+        var tmp = {{test|tojson}}
+        var features = [];
+
+        tmp.forEach((i) => {
+          address = (i.address.split(' ').join("+") + ",+Cupertino,+CA")
+          var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address  + '&key=AIzaSyAcZrcwvq7N2Ki-nX0ScLH4cajwoToRYf4'
+          fetch(url).then((res) => {
+            res.json().then((text) => {
+              try{
+                r = (text.results[0].geometry.location)
+                features.push({
+                  position: new google.maps.LatLng(r.lat, r.lng),
+                  count: i.cases
+                })
+              }
+              catch(e){
+                console.log(e)
+              }
+            }
+            )
+          })
+        })
+        setTimeout(function(){
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: CUPERTINO,
+          restriction: {
+            latLngBounds: CUPERTINO_BOUNDS,
+            strictBounds: false,
+          },
+          minZoom: 13,
+          maxZoom: 18,
+          zoom: 15,
+        });
+        var greenicon ="https://imagizer.imageshack.com/img923/3909/3sMgmt.png";
+        var yellowicon = "https://imagizer.imageshack.com/img922/6109/pplQah.png"
+        var icons = {
+          green: {
+            icon: greenicon,
+          },
+          yellow: {
+            icon: yellowicon
+          },
+        };
+        for (var i = 0; i < features.length; i++) {
+          var typeicon;
+          if (features[i].count <= 5){
+            typeicon = icons.green.icon
+          }
+          else if (features[i].count > 5 && features[i].count < 10){
+            typeicon = icons.yellow.icon
+          }
+          var marker = new google.maps.Marker({
+            position: features[i].position,
+            icon: typeicon,
+            map: map,
+          });
+        }
+        }, 500)}
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZrcwvq7N2Ki-nX0ScLH4cajwoToRYf4&callback=mapinit"
+    ></script>
+  </body>
+</html>

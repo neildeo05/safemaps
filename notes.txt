@@ -1,0 +1,41 @@
+AIzaSyAcZrcwvq7N2Ki-nX0ScLH4cajwoToRYf4
+
+37.322151 -122.073692
+
+
+37.323010 -122.004767
+
+
+
+Here app id
+
+OexOSYRHwU47hVMs5GOL
+Q903Ko6UkoSSYY1MXU0-iMg6hUHhKtn1zVqqWorjLuY
+
+
+
+37.3092828 - East point
+37.322287 - West Point
+
+-122.035834 - North Point
+
+
+-122.038581 - South Point
+
+
+
+
+_________________________________
+
+
+
+WEST - 37.3115719,-122.0826186
+
+EAST - 37.3162984,-122.00976
+
+NORTH - 37.3385116,-122.0380106
+
+SOUTH - 37.2947792,-122.0472927
+
+
+
