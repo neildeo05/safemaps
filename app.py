@@ -6,6 +6,9 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def main():
     return render_template("home.html")
+@app.route("/about", methods=["GET"])
+def about():
+    return render_template("AboutPage.html")
 @app.route("/map", methods=["GET"])
 def home():
     if request.method == "GET":
